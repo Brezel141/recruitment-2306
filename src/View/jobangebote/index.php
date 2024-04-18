@@ -1,0 +1,3 @@
+<?php   
+
+echo "Jobangebote index";

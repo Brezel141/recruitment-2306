@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-class HomeController
+class HomeController extends BaseController
 {
-    public function index()
+    public function index(): void
     {
-        echo 'Hallo von HomeController - index()';
+        parent::loadView('home');
     }
 }

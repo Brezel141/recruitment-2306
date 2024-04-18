@@ -14,6 +14,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 // Dispatcher einrichten
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'App\Controller\HomeController::index');
+    $r->addRoute('GET', '/jobangebote', 'App\Controller\JobangeboteController::index');
 });
 
 // HTTP-Methode und URI abrufen
@@ -38,8 +39,10 @@ switch ($routeInfo[0]) {
         // ... 405 Method Not Allowed
         break;
     case FastRoute\Dispatcher::FOUND:
+        // Route gefunden, Handler ausfueren
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
-        // ... call $handler with $vars
+        list($class, $method) = explode('::', $handler, 2);
+        call_user_func_array([new $class, $method], $vars);
         break;
 }
