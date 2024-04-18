@@ -23,3 +23,7 @@
 4. Nel `index.php` di `public`, importare l'autoloader del `vendor` che permette di caricare tutti i `src` automaticamente.
 5. La cartella `src` viene nominata `App` nel `composer.json`.
 6. Se si creano funzioni/classi nelle varie `src`, bisogna importarle nel `index.php` assegnandole una variabile. In seguito, si può richiamare la funzione tramite questa variabile.
+
+implementare router https://github.com/nikic/FastRoute
+
+implementare i vari controller
