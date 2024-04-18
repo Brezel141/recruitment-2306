@@ -1,9 +1,15 @@
--Prima creare la struttura del progetto
--create le .htaccess una nella root per far visualizzare solo la cartella public e un altro .htaccess nel public per far caricare soltanto il index
--nel composer creare un auto load vedi file poi nel terminal " composer update " e poi " composer dump-autoload" e cosi vengono create automaticamente catrelle tipo vendor
--nel index.php di public importare il autoloader del vendor che permette di caricare tutti i src automaticamente
--la cartella src viene nominata App nel composer.json
--se si creano funzioni/classi nelle varie src bisogna importarle nel index.php e dandole una variabile e poi si puo richamare la funzione 
+# Project Setup Instructions
+
+1. Create the project structure.
+2. Create two .htaccess files:
+   - One in the root to only display the `public` folder.
+   - Another one in `public` to only load the `index`.
+3. In composer, create an auto load (see file).
+   - Run `composer update` in the terminal.
+   - Run `composer dump-autoload` in the terminal. This will automatically create folders like `vendor`.
+4. In public's index.php, import the vendor's autoloader that allows to load all the src automatically.
+5. The src folder is named App in composer.json.
+6. If you create functions/classes in the various src, you need to import them into index.php by assigning them a variable. Afterwards, you can call the function through this variable.
 
 # Istruzioni per la configurazione del progetto
 
