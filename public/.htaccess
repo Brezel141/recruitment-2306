@@ -1,1 +1,4 @@
 RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+
+RewriteEngine On
+RewriteRule ^test\.php$ index.php [L]

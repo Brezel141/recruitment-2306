@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'FastRoute\\' => array($vendorDir . '/nikic/fast-route/src'),
+    'Envms\\FluentPDO\\' => array($vendorDir . '/envms/fluentpdo/src'),
     'App\\' => array($baseDir . '/src'),
 );

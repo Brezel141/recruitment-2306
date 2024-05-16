@@ -15,6 +15,10 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         array (
             'FastRoute\\' => 10,
         ),
+        'E' => 
+        array (
+            'Envms\\FluentPDO\\' => 16,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -25,6 +29,10 @@ class ComposerStaticInitd751713988987e9331980363e24189ce
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
+        ),
+        'Envms\\FluentPDO\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/envms/fluentpdo/src',
         ),
         'App\\' => 
         array (
