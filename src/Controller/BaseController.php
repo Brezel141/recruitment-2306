@@ -4,25 +4,25 @@ namespace App\Controller;
 
 class BaseController
 {
-    // Path zum View-Verzeichen
+    // Path to the views directory
     protected $viewsPath = __DIR__ . '/../View/';
 
-    // Methode zum Laden einer View, kann auch in einem Unterverzeichen liegen
-    public function loadView($viewName, $subDir = '', $data =[]): void
+    // Method to load a view, can also be in a subdirectory
+    public function loadView($viewName, $subDir = '', $data = []): void
     {
-        // Prüfen, ob Unterverzeichnis angegeben wurde und entsprechend den Pfad anpassen
+        // Check if a subdirectory is specified and adjust the path accordingly
         $path = $this->viewsPath . ($subDir ? '/' . $subDir . '/' : '') . $viewName . '.php';
 
-        // Prüfe ob File existiert
+        // Check if the file exists
         if (file_exists($path)) {
-            // Variablen für die View verfügbar machen
+            // Make the data variables available to the view
             extract($data);
 
-            // View-File einbinden
+            // Include the view file
             require($path);
         } else {
-            // Fehlermeldung, wenn die Datei nicht gefunden wird
-            echo "Die View $viewName konnte nicht gefunden werden.";
+            // Error message if the file is not found
+            echo "The view $viewName could not be found.";
         }
     }
 }

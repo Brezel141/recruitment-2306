@@ -1,17 +1,18 @@
+<!-- src/View/home.php -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Startseite</title> <!-- Title of the page -->
 </head>
 <body>
-    <h1>Willkommen auf der Startseite</h1>
-    <p>Klicken Sie auf die folgenden Links, um zu den Seiten zu gelangen:</p>
+    <h1>Willkommen auf der Startseite</h1> <!-- Heading of the page -->
+
     <ul>
-        <li><a href="/jobangebote">Gehe zu Jobangebote</a></li>
-        <li><a href="/bewerbung">Gehe zu Bewerbung</a></li>
+        <!-- Link to the job offers page -->
+        <li><a href="/jobangebote">Zu den Jobangeboten</a></li>
+        <!-- Link to the applications page -->
+        <li><a href="/bewerbung">Zu den Bewerbungen</a></li>
     </ul>
 </body>
 </html>
-
-

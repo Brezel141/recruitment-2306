@@ -1,69 +1,76 @@
 <?php
+require_once '../vendor/autoload.php';
 
-// Hier ist der  einstieg punkt unsere App
+// Import the RouteCollector class from FastRoute
+use FastRoute\RouteCollector;
 
-// Fehlermeldugen aktiviren
-error_reporting(error_level:E_ALL);
-ini_set(option:'display_errors', value:'1');
+// Set up the dispatcher with route definitions
+$dispatcher = FastRoute\simpleDispatcher(function(RouteCollector $r) {
+    // Define the home route
+    $r->addRoute('GET', '/', function() {
+        require '../src/View/home.php';
+    });
 
-// Autoloading
-require_once __DIR__ . '/../vendor/autoload.php';
-
-// Fast-Route-Library
-
-// Dispatcher einrichten
-$dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/', 'App\Controller\HomeController::index');
+    // Define routes for Jobangebote (job offers)
     $r->addRoute('GET', '/jobangebote', 'App\Controller\JobangeboteController::index');
+    $r->addRoute('GET', '/jobangebote/edit/{id:\d+}', 'App\Controller\JobangeboteController::edit');
+    $r->addRoute('GET', '/jobangebote/show/{id:\d+}', 'App\Controller\JobangeboteController::show');
+    $r->addRoute('POST', '/jobangebote/update/{id:\d+}', 'App\Controller\JobangeboteController::update');
+    $r->addRoute('POST', '/jobangebote/delete/{id:\d+}', 'App\Controller\JobangeboteController::delete');
+
+    // Define routes for Bewerbung (applications)
     $r->addRoute('GET', '/bewerbung', 'App\Controller\BewerbungController::index');
+    $r->addRoute('GET', '/bewerbung/edit/{id:\d+}', 'App\Controller\BewerbungController::edit');
+    $r->addRoute('GET', '/bewerbung/show/{id:\d+}', 'App\Controller\BewerbungController::show');
+    $r->addRoute('POST', '/bewerbung/update/{id:\d+}', 'App\Controller\BewerbungController::update');
+    $r->addRoute('POST', '/bewerbung/delete/{id:\d+}', 'App\Controller\BewerbungController::delete');
 });
 
-// HTTP-Methode und URI abrufen
+// Get the HTTP method and URI from the server
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 
-// Unnoetige URL-Teile entfernen
-if (false !== $pos = strpos($uri, '?')) {
-    $uri = substr($uri, 0, $pos);
-}
-$uri = rawurldecode($uri);
+// Decode the URI to handle special characters
+$uri = rawurldecode(parse_url($uri, PHP_URL_PATH));
 
-// Routing abgleichen
-
+// Dispatch the request to the appropriate route
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
-        echo '... 404 Not Found';
+        // Handle 404 Not Found
+        http_response_code(404);
+        echo '404 Not Found';
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
-        $allowedMethods = $routeInfo[1];
+        // Handle 405 Method Not Allowed
+        http_response_code(405);
         echo '405 Method Not Allowed';
         break;
     case FastRoute\Dispatcher::FOUND:
-        // Route gefunden, Handler ausfueren
+        // If the route is found, get the handler and variables
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
-        list($class, $method) = explode('::', $handler, 2);
-        call_user_func_array([new $class, $method], $vars);
-        break;
-        default:
-        echo 'An unexpected routing error occurred';  // Default error handling
-        break;
-
-        if (class_exists($class)) {
-            if (method_exists($class, $method)) {
-                call_user_func_array([new $class, $method], $vars);
-            } else {
-                echo "Method $method does not exist in class $class<br>";
-            }
+        
+        // Check if the handler is callable (e.g., a closure)
+        if (is_callable($handler)) {
+            call_user_func_array($handler, $vars);
         } else {
-            echo "Class $class does not exist<br>";
+            // If the handler is a class method, call it
+            list($class, $method) = explode('::', $handler);
+            if (class_exists($class)) {
+                if (method_exists($class, $method)) {
+                    call_user_func_array([new $class, $method], $vars);
+                } else {
+                    echo "Method $method does not exist in class $class<br>";
+                }
+            } else {
+                echo "Class $class does not exist<br>";
+            }
         }
         break;
 }
+
+// Uncomment to test a specific controller directly
 //$controller = new App\Controller\JobangeboteController();
 //$controller->index();
-
-
-echo 'ich bin index public';
-
+?>

@@ -1,4 +1,13 @@
-RewriteRule ^(.*)$ index.php?$1 [L,QSA]
-
+# Enable the RewriteEngine module, which allows the server to perform URL rewriting
 RewriteEngine On
-RewriteRule ^test\.php$ index.php [L]
+
+# Check if the requested file does not exist
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Check if the requested directory does not exist
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# If the requested file or directory does not exist, rewrite the URL to index.php
+# QSA (Query String Append) appends the query string to the rewritten URL
+# L (Last) stops any further rewriting if this rule matches
+RewriteRule ^ index.php [QSA,L]

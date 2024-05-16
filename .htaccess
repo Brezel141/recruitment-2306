@@ -1,6 +1,11 @@
-# URL-Umschreibung einschalten 
+# Enable URL rewriting
 RewriteEngine On
-# Pruefen od Request nicht mit /public/ beginnt
+
+# Check if the request URI does not start with /public/
 RewriteCond %{REQUEST_URI} !^/public/
-# Umschreibt alle Request die nicht mit /public/ beginnen
+
+# Rewrite all requests that do not start with /public/
+# ^(.*)$ captures the entire request URI
+# /public/$1 rewrites the request to start with /public/ followed by the captured URI
+# [L] flag indicates that this is the last rule to be processed if it matches
 RewriteRule ^(.*)$ /public/$1 [L]
