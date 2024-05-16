@@ -53,10 +53,6 @@ This is a simple recruitment application built with PHP, using FastRoute for rou
 
 - **URL Rewriting**: Redirects all requests to `public/index.php` unless the request is for a file or directory within the `public` directory.
 
-```apache
-RewriteEngine On
-RewriteCond %{REQUEST_URI} !^/public/
-RewriteRule ^(.*)$ /public/$1 [L]
 
 # Project Setup Instructions
 
