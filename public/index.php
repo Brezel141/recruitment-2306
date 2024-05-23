@@ -18,6 +18,11 @@ $dispatcher = FastRoute\simpleDispatcher(function(RouteCollector $r) {
     $r->addRoute('POST', '/jobangebote/update/{id:\d+}', 'App\Controller\JobangeboteController::update');
     $r->addRoute('POST', '/jobangebote/delete/{id:\d+}', 'App\Controller\JobangeboteController::delete');
 
+    //------------------------------
+    $r->addRoute('GET', '/jobangebote/create', 'App\Controller\JobangeboteController::create');
+    //--------------------------
+    
+
     // Define routes for Bewerbung (applications)
     $r->addRoute('GET', '/bewerbung', 'App\Controller\BewerbungController::index');
     $r->addRoute('GET', '/bewerbung/edit/{id:\d+}', 'App\Controller\BewerbungController::edit');

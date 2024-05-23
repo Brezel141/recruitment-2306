@@ -67,4 +67,14 @@ class JobangeboteController extends BaseController
         header('Location: /jobangebote');
         exit;
     }
+    //--------------------------------------------------------------
+    public function create()
+{
+    // We're creating a new job offer
+    $jobangebot = ['id' => '', 'titel' => ''];
+
+    // Load the update view and pass it the job offer
+    require_once '../View/jobangebote/update.php';
+    //--------------------------------------------------------------
+}
 }

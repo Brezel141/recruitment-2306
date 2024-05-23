@@ -1,24 +1,22 @@
-<!-- src/View/jobangebote/edit.php -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Jobangebot bearbeiten</title> <!-- Title of the page -->
+    <title>Jobangebot bearbeiten</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Jobangebot bearbeiten</h1> <!-- Heading of the page -->
-
-    <!-- Form to edit a job offer -->
-    <form action="/jobangebote/update/<?= $jobangebot['id']; ?>" method="post">
-        <!-- Label and input field for the title -->
-        <label for="titel">Titel:</label>
-        <!-- Pre-fill the input field with the current title, ensuring it is safely encoded -->
-        <input type="text" id="titel" name="titel" value="<?= htmlspecialchars($jobangebot['titel']); ?>" required>
-        <!-- Submit button to update the job offer -->
-        <button type="submit">Aktualisieren</button>
-    </form>
-
-    <!-- Link to go back to the job offers list -->
-    <a href="/jobangebote">Zurück zu den Jobangeboten</a>
+    <header>
+        <h1>Jobangebot bearbeiten</h1>
+    </header>
+    <main>
+        <form action="/jobangebote/update/<?= isset($jobangebot['id']) ? $jobangebot['id'] : 'new'; ?>" method="post">
+            <label for="titel">Titel:</label>
+            <input type="text" id="titel" name="titel" value="<?= isset($jobangebot['titel']) ? htmlspecialchars($jobangebot['titel']) : ''; ?>" required>
+            <button type="submit" class="button">Aktualisieren</button>
+        </form>
+        <a class="button" href="/jobangebote">Zurück zu den Jobangeboten</a>
+    </main>
+    <script src="/js/script.js"></script>
 </body>
 </html>

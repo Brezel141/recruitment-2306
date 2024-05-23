@@ -1,17 +1,18 @@
-<!-- src/View/jobangebote/show.php -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Jobangebot anzeigen</title> <!-- Title of the page -->
+    <title>Jobangebot anzeigen</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Jobangebot anzeigen</h1> <!-- Heading of the page -->
-
-    <!-- Display the title of the job offer, ensuring it is safely encoded -->
-    <p><strong>Titel:</strong> <?= htmlspecialchars($jobangebot['titel']); ?></p>
-
-    <!-- Link to go back to the job offers list -->
-    <a href="/jobangebote">Zurück zu den Jobangeboten</a>
+    <header>
+        <h1>Jobangebot anzeigen</h1>
+    </header>
+    <main>
+        <p><strong>Titel:</strong> <?= htmlspecialchars($jobangebot['titel']); ?></p>
+        <a class="button" href="/jobangebote">Zurück zu den Jobangeboten</a>
+    </main>
+    <script src="/js/script.js"></script>
 </body>
 </html>

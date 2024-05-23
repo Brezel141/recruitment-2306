@@ -1,18 +1,20 @@
-<!-- src/View/home.php -->
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Startseite</title> <!-- Title of the page -->
+    <title>Startseite</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>Willkommen auf der Startseite</h1> <!-- Heading of the page -->
-
-    <ul>
-        <!-- Link to the job offers page -->
-        <li><a href="/jobangebote">Zu den Jobangeboten</a></li>
-        <!-- Link to the applications page -->
-        <li><a href="/bewerbung">Zu den Bewerbungen</a></li>
-    </ul>
+    <header>
+        <h1>Willkommen auf der Startseite</h1>
+    </header>
+    <main>
+        <ul>
+            <li><a class="button" href="/jobangebote">Zu den Jobangeboten</a></li>
+            <li><a class="button" href="/bewerbung">Zu den Bewerbungen</a></li>
+        </ul>
+    </main>
+    <script src="/js/script.js"></script>
 </body>
 </html>
